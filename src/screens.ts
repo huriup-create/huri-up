@@ -26,7 +26,7 @@ export interface ScreenSpec {
 export const SCREENS: ScreenSpec[] = [
   {
     id: 'prepare',
-    path: '/',
+    path: '/app',
     name: '방석 준비',
     purpose: '방석 전원을 켜고 앱과 연결해서 쓸 준비가 됐는지 확인한다',
     primaryUser: '방석을 처음 켜 보는 고3 수험생 서연',
@@ -41,7 +41,7 @@ export const SCREENS: ScreenSpec[] = [
   },
   {
     id: 'seat',
-    path: '/seat',
+    path: '/app/seat',
     name: '착석 확인',
     purpose: '방석에 앉고, 방석이 착석을 알아차려 측정이 시작됐는지 확인한다',
     primaryUser: '방석 연결을 막 마친 고3 수험생 서연',
@@ -61,7 +61,7 @@ export const SCREENS: ScreenSpec[] = [
   },
   {
     id: 'measure',
-    path: '/measure',
+    path: '/app/measure',
     name: '자세 측정',
     purpose: '공부하는 동안 좌우 압력 불균형과 앉은 자세 변화를 계속 감지한다',
     primaryUser: '온라인 강의를 듣거나 문제를 푸는 서연',
@@ -84,7 +84,7 @@ export const SCREENS: ScreenSpec[] = [
   },
   {
     id: 'alert',
-    path: '/alert',
+    path: '/app/alert',
     name: '자세 알림',
     purpose: '한쪽으로 기운 채 일정 시간이 지나면 방석 진동으로 자세가 무너졌음을 알린다',
     primaryUser: '문제 풀이에 집중하다 몸이 한쪽으로 기운 서연',
@@ -98,7 +98,7 @@ export const SCREENS: ScreenSpec[] = [
   },
   {
     id: 'corrected',
-    path: '/corrected',
+    path: '/app/corrected',
     name: '교정 확인',
     purpose: '바르게 고쳐 앉았을 때 압력 분포가 돌아온 것을 확인하고 알림을 멈춘다',
     primaryUser: '진동을 느끼고 자세를 고쳐 앉은 서연',
@@ -112,7 +112,7 @@ export const SCREENS: ScreenSpec[] = [
   },
   {
     id: 'end',
-    path: '/end',
+    path: '/app/end',
     name: '측정 종료',
     purpose: '공부를 마치면 측정을 끝내고 오늘의 자세 기록을 확인한다',
     primaryUser: '공부를 마치고 자리에서 일어난 서연',

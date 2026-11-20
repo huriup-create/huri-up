@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>애플 제품 페이지 역설계도</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:"Pretendard";src:url("./assets/c13d0fd7b3c1acd8434536936b0b6324.woff2") format("woff2");font-weight:45 920;font-style:normal}
+body{margin:0}
+a{color:#0066cc}a:hover{color:#004f9e}
+</style>
+</helmet>
+<div style="width: 1600px; min-height: 2700px; box-sizing: border-box; padding: 80px; background: #f5f5f7; font-family: Pretendard, system-ui, sans-serif; color: #1d1d1f; word-break: keep-all; display: flex; flex-direction: column; gap: 56px">
+
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+<div>
+<p style="margin: 0; font-size: 18px; font-weight: 700; color: #0066cc">REVERSE ENGINEERING</p>
+<h1 style="margin: 10px 0 0; font-size: 56px; font-weight: 800; letter-spacing: -0.03em">애플 제품 페이지 역설계도</h1>
+<p style="margin: 14px 0 0; font-size: 20px; color: #6e6e73">애플 제품 페이지를 섹션 단위로 분해하고, 스마트 방석 페이지의 어느 구간에 대응하는지 정리했습니다.</p>
+</div>
+<div style="text-align: right; font-size: 15px; line-height: 1.7; color: #6e6e73; flex: none">
+<p style="margin: 0">분석 대상 · apple.com/kr/airpods-pro</p>
+<p style="margin: 0">분석일 · 2026-11-20</p>
+<p style="margin: 0">본문 섹션 9개 + 글로벌·로컬 내비</p>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<h2 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.02em">1. 페이지 흐름 대응표</h2>
+<div style="display: flex; gap: 10px; font-size: 14px; font-weight: 700">
+<span style="padding: 6px 12px; border-radius: 999px; background: #e6f0fb; color: #004f9e">적용됨</span>
+<span style="padding: 6px 12px; border-radius: 999px; background: #fff1d6; color: #7a4f00">부분 적용</span>
+<span style="padding: 6px 12px; border-radius: 999px; background: #e8e8ed; color: #424245">미적용</span>
+</div>
+</div>
+
+<div style="background: #ffffff; border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); overflow: hidden">
+<div style="display: grid; grid-template-columns: 64px 1.05fr 1.25fr 1.15fr 120px; column-gap: 28px; padding: 18px 32px; background: #1d1d1f; color: #f5f5f7; font-size: 14px; font-weight: 700">
+<span>순서</span><span>애플 구간 (실제 제목)</span><span>애플이 쓰는 기법</span><span>스마트 방석 페이지 대응</span><span>상태</span>
+</div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="9">
+<div style="display: grid; grid-template-columns: 64px 1.05fr 1.25fr 1.15fr 120px; column-gap: 28px; padding: 22px 32px; border-top: 1px solid #e8e8ed; align-items: start; font-size: 16px; line-height: 1.55">
+<span style="font-size: 22px; font-weight: 800; color: #0066cc">{{r.n}}</span>
+<div><p style="margin: 0; font-weight: 700">{{r.name}}</p><p style="margin: 4px 0 0; color: #6e6e73; font-size: 15px">{{r.title}}</p></div>
+<p style="margin: 0; color: #424245">{{r.tech}}</p>
+<p style="margin: 0; color: #1d1d1f">{{r.ours}}</p>
+<span style="{{r.chip}}">{{r.status}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.02em">2. 기술 레이어 비교</h2>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<sc-for list="{{tech}}" as="t" hint-placeholder-count="6">
+<div style="background: #ffffff; border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 20px; font-weight: 800">{{t.k}}</p>
+<div><p style="margin: 0; font-size: 13px; font-weight: 700; color: #6e6e73">애플</p><p style="margin: 4px 0 0; font-size: 15px; line-height: 1.55; color: #424245">{{t.apple}}</p></div>
+<div><p style="margin: 0; font-size: 13px; font-weight: 700; color: #0066cc">우리 페이지</p><p style="margin: 4px 0 0; font-size: 15px; line-height: 1.55">{{t.ours}}</p></div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.02em">3. 다음에 가져올 구조 (우선순위)</h2>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<sc-for list="{{next}}" as="x" hint-placeholder-count="3">
+<div style="background: #ffffff; border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: 44px; font-weight: 800; color: #0066cc; letter-spacing: -0.03em">{{x.n}}</p>
+<p style="margin: 0; font-size: 20px; font-weight: 800">{{x.k}}</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #424245">{{x.d}}</p>
+<p style="margin: 6px 0 0; font-size: 14px; color: #6e6e73">필요한 것 · {{x.need}}</p>
+</div>
+</sc-for>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var chips = {
+      done: 'justify-self: start; font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: #e6f0fb; color: #004f9e',
+      part: 'justify-self: start; font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: #fff1d6; color: #7a4f00',
+      none: 'justify-self: start; font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: #e8e8ed; color: #424245'
+    };
+    var label = { done: '적용됨', part: '부분 적용', none: '미적용' };
+    var rows = [
+      ['00', '글로벌 + 로컬 내비', '사이트 메뉴 · 제품명 / 제품 사양 / 비교하기 / 구입하기', '2단 메뉴. 아래쪽 로컬 내비가 스크롤해도 상단에 붙어 있고(sticky), 오른쪽 끝에 늘 구입하기 버튼', '상단 고정 메뉴 1단(브랜드명 · 개요 · 센싱 기술 · 앱 · 스펙 · 구매하기) + 반투명 블러', 'done'],
+      ['01', '웰컴(히어로)', 'AirPods Pro 3', '제품명 → 짧은 문구 → 구입하기, 제품 영상 1개로 첫 화면을 채움', '헤드라인 + 버튼 2개 + 제품 사진(스크롤 시 확대 등장). 영상 대신 정지 이미지', 'part'],
+      ['02', '하이라이트', '일단 핵심부터.', '자동 재생 영상 갤러리 + 재생/일시정지 버튼. 핵심 기능 5개를 슬라이드로 넘기며 각주로 근거 표기', '특징 벤토 그리드(센서 개수 · 배터리 · 진동 알림 · 세탁 커버 · 호환성). 갤러리 아닌 고정 카드', 'part'],
+      ['03', '제품 뷰어', '보다 자세히 들여다보기.', '좌우 화살표 캐러셀 여러 묶음 + 영상. 각도 · 디테일 · 색상을 넘겨 보며 구경', '없음', 'none'],
+      ['04', '제품 스토리', '지능형 소음 제어 · 음성 분리 · 적응형 오디오 · 대화 인지', '페이지에서 가장 긴 구간(현재 화면 폭 기준 약 1.5만 px). 탭으로 기능을 바꿔 보고, 고정 영역 위로 설명이 스크롤되며 바뀜', '자세 탭 4개로 바뀌는 압력 지도 + 좌우·앞뒤 균형 + 방석 반응, 이어서 감지→알림→습관 3단계와 앱 섹션', 'done'],
+      ['05', '구매 혜택', 'AirPods, Apple에서 사면 가장 좋은 이유.', '무료 각인 · 배송 및 픽업 · 할부 결제 · 스페셜리스트 · 스토어 앱을 카드로 나열', '없음(마지막 구매 CTA에 [배송 / 체험 정책] 자리만 있음)', 'none'],
+      ['06', '모델 비교', '다른 AirPods 모델도 살펴보기.', '라인업을 나란히 놓고 기능 유무를 비교', '모델이 하나라 비교 대신 기술 사양표', 'part'],
+      ['07', '환경', 'AirPods Pro 3 그리고 환경.', '재활용 소재 · 재생 전력 · 포장 등 수치 3개를 큰 숫자로', '없음(선택 사항)', 'none'],
+      ['08', '가치관 + 푸터', '우리의 가치관이 곧 …', '브랜드 가치 링크 + 법적 고지 · 사이트맵 푸터', '저작권 · 개인정보처리방침 · 이용약관 · 고객센터 푸터', 'part']
+    ];
+    return {
+      rows: rows.map(function (r) {
+        return { n: r[0], name: r[1], title: r[2], tech: r[3], ours: r[4], status: label[r[5]], chip: chips[r[5]] };
+      }),
+      tech: [
+        { k: '스크롤 애니메이션', apple: '자체 JS 번들(main.built.js)이 요소에 붙은 data-anim 속성을 읽어 스크롤 위치마다 키프레임을 재생', ours: 'CSS 스크롤 연동 애니메이션(animation-timeline: view())만으로 등장 · 확대 효과. JS 없이 가볍고, 지원 안 하는 브라우저에서는 그냥 보임' },
+        { k: '영상', apple: 'hls.js 스트리밍 + 자체 영상 모듈(autofilms). 자동 재생하되 재생/일시정지 버튼을 꼭 둠', ours: '영상 없음. 착석 · 진동 장면 영상을 넣는다면 자동 재생 + 일시정지 버튼 + 정지 이미지 대체를 같이' },
+        { k: '내비게이션', apple: '공통 글로벌 내비 + 제품별 로컬 내비(ac-localnav) 2단, 로컬 내비는 sticky', ours: '1단 sticky 메뉴 + 반투명 블러. 제품이 늘면 2단으로 분리' },
+        { k: '가격 표시', apple: '가격 모듈(autopricing)이 지역 · 프로모션에 맞춰 가격을 자동으로 채움', ours: '[가격] 자리표시. 쇼핑몰(스마트스토어 등) 연결 시 가격과 구매 링크를 한 곳에서 관리' },
+        { k: '타이포 · 리듬', apple: '아주 큰 헤드라인 + 회색 보조 문장, 섹션 배경을 흰색과 연회색으로 번갈아 배치', ours: '같은 원칙 적용: Pretendard 큰 헤드라인, #fbfbfd · #f5f5f7 · 검정 구간 교차' },
+        { k: '인터랙션', apple: '탭 · 캐러셀 · 각주 버튼 등 실제 button 요소로 키보드 조작 가능', ours: '자세 탭이 실제 button + aria-pressed, 메뉴 터치 영역 44px 이상' }
+      ],
+      next: [
+        { n: '01', k: '제품 뷰어 캐러셀', d: '정면 · 측면 · 전원 버튼 · 커버 분리 장면을 좌우로 넘겨 보는 구간. 애플 03번 구간 대응', need: '각도별 제품 사진 3~5장' },
+        { n: '02', k: '구매 혜택 카드', d: '무료 배송 · 체험 기간 · A/S · 할부 등을 카드로. 구매 직전 망설임을 줄이는 애플 05번 구간 대응', need: '실제 배송 · 환불 · 보증 정책' },
+        { n: '03', k: '히어로 영상', d: '사람이 앉고 → 자세가 무너지고 → 방석이 진동하는 10초 안팎 루프. 애플 01 · 02번 구간 대응', need: '짧은 제품 영상 1개' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
